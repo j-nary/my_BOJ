@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int N; 
+int N;  
 char art[102][102];
 int visit[102][102];
 
