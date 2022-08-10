@@ -4,8 +4,8 @@
 using namespace std;
 
 int map[1003][1003];
-bool isVisited_non_brk[1003][1003];
-bool isVisited_brk[1003][1003];
+bool isVis_nbrk[1003][1003];
+bool isVis_brk[1003][1003];
 
 typedef struct Track {
     int r;
@@ -13,6 +13,8 @@ typedef struct Track {
     int depth;
     bool isBrk;
 }track;
+
+queue<Track> q;
 
 int main() {
     int N, M;
@@ -23,5 +25,11 @@ int main() {
         }
     }
 
-    
+    q.push({0, 0, 0, 0});
+    isVis_nbrk[0][0] = true;
+
+    int cur = 
+    while(!q.empty()) {
+
+    }
 }
