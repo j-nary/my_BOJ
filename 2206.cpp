@@ -28,7 +28,6 @@ int main() {
     q.push({0, 0, 0, 0});
     isVis_nbrk[0][0] = true;
 
-    int cur = 
     while(!q.empty()) {
 
     }
