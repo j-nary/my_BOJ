@@ -29,11 +29,10 @@ int main() {
 
     q.push({0, 0});
     while(1) {
-        int r = q.front().first;
-        int c = q.front().second;
+        auto [r, c] = q.front();
         q.pop();
 
-        if ( r == N-1 && c == M-1) break;
+        if (r == N - 1 && c == M - 1) break;
 
         for (int i = 0; i < 4; i++) {
             int nr = r + dir[i][0];
