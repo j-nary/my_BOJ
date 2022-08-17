@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <typeinfo>
 
 using namespace std;
 
@@ -14,20 +15,11 @@ int main() {
         v.push_back(make_pair(i, tmp));
     }
 
-    while(M--) {
+    while(M--) { 
         string input;
         cin >> input;
 
-        if (input[0] > 64 && input[0] < 123)
-            for (int i = 0; i < N; i++) {
-                if (input == v[i].second) {
-                    cout << v[i].first << '\n';
-                    break;
-                }
-            }
-        else {
-            int tmp = stoi(input);
-            cout << v[tmp+1].second << '\n';
-        }
+        if (typeid(input).name() == "int")
+            v[int]
     }
 }
