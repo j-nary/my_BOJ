@@ -10,6 +10,7 @@ int bpg[20004];
 bool check[20004];
 void test_case() {
     memset(bpg, 0, sizeof(bpg));
+    memset(check, false, sizeof(check));
 
     vector<pair<int, int>> v;
     int flag = 0;
@@ -20,9 +21,9 @@ void test_case() {
         int dt1, dt2;
         cin >> dt1 >> dt2;
         if (dt1 >= dt2)
-            v.push_back({dt1, dt2});
+            v.push_back({dt2, dt1});
         else
-            v.push_back({dt2, dt1});        
+            v.push_back({dt1, dt2});        
     }
     sort(v.begin(), v.end());
 
@@ -48,6 +49,22 @@ void test_case() {
                 q.push({v[i].first, v[i].second});
                 check[i] = true;
             }
+            if (v[i].second == dt1) {
+                bpg[v[i].first] = bpg[dt1] * (-1);
+                q.push({v[i].first, v[i].second});
+                check[i] = true;
+            }
+            if (v[i].first == dt2) {
+                bpg[v[i].second] = bpg[dt2] * (-1);
+                q.push({v[i].first, v[i].second});
+                check[i] = true;
+            }
+            if (v[i].second == dt2) {
+                bpg[v[i].first] = bpg[dt2] * (-1);
+                q.push({v[i].first, v[i].second});
+                check[i] = true;
+            }
+
         }
     }
     
@@ -61,5 +78,6 @@ int main() {
     int tc; cin >> tc;
     for (int t = 1; t <= tc; t++) {
         test_case();
+        // cout << "ha........." << endl;
     }
 }
