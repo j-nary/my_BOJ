@@ -4,10 +4,10 @@
 
 using namespace std;
 int map[1003][1003];
-typedef struct {
+struct T {
     int Y;
     int X;
-} T;
+};
 queue<T> q;
 bool check[1003][1003];
 int dist[1003][1003];
@@ -62,7 +62,7 @@ int main() {
                 printf("-1");
                 return 0;
             }
-            if ( max < dist[i][j])
+            if (max < dist[i][j])
                 max = dist[i][j];
         }
     printf("%d\n", max);
