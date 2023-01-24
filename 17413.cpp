@@ -28,7 +28,6 @@ int main() {
                     cout << v[i];
                 }
                 v.clear();
-                cout << str[i];
             }
             TagFlag = 1;
             cout << str[i];
