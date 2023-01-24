@@ -23,7 +23,7 @@ int main() {
 
     for (int i = 0; i < m; i++) {
         int a, b; scanf("%d%d", &a, &b);
-        printf("%d", sum[b] - sum[a-1]);
+        printf("%d\n", sum[b] - sum[a-1]);
     }
 
 }
