@@ -1,14 +1,17 @@
+//ì‹œê°„ì´ˆê³¼
+
 #include <iostream>
+#include <cstring>
 
 using namespace std;
 using ll = long long;
-ll parent[N+1];
+
+ll parent[100005];
 int main() {
 ios::sync_with_stdio(0); cin.tie(0);
     ll N;
     cin >> N;
-    ll* parent = new ll[N+1];  //ºÎ¸ð³ëµå Ç¥½Ã
-    for (ll i= 0; i < N+1; i++) parent[i] = -1;
+    memset(parent, -1, sizeof(parent));
     parent[1] = 0;
 
     ll idx1 = 0;
@@ -33,5 +36,4 @@ ios::sync_with_stdio(0); cin.tie(0);
     for (ll i = 2; i <= N; i++) {
         cout << parent[i] << endl;
     }
-    delete parent;
 }

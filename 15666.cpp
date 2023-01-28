@@ -7,13 +7,28 @@ using namespace std;
 int n, m;
 vector<int> value;
 vector<int> tmp;
+vector<string> res;
 
 void per (int start) {
     if (tmp.size() == m) {
+        string s;
+        int flag = 0;
+        for (int i = 0; i < m; i++) {
+            s.push_back(tmp[i]);
+        }
+        for (int i = 0; i < res.size(); i++) {
+            if (res[i] == s) {
+                flag = 1;
+                break;
+            }
+        }
+        if (flag) return;
+        
         for (int i = 0; i < m; i++) {
             cout << tmp[i] << " ";
         }
         cout << '\n';
+        res.push_back(s);
         return;
     }
 
