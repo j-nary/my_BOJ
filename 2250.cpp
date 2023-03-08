@@ -5,8 +5,8 @@
 
 using namespace std;
 
-bool rootChk[10004];
 pair<int, int> tree[10004];     //{left, right}
+bool rootChk[10004];
 vector<int> level[10004];
 int columnIdx[10004];           //columnIdx[8] = 1
 

@@ -9,7 +9,7 @@ using namespace std;
 
 #define nMax 3072
 
-bool star[2*nMax][nMax];
+bool star[nMax][2*nMax];
 
 void DivideConquer(int depth, int x, int y) {
     if (depth == 3) {
