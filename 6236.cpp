@@ -6,7 +6,6 @@
 using namespace std;
 
 vector<int> v;
-vector<int> w;
 int main() {
     ios::sync_with_stdio(false); cin.tie(nullptr);
 
