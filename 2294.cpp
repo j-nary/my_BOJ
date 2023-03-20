@@ -1,4 +1,5 @@
 //BOJ_2294 동전 2 [골드 5]
+//뭔가 생각을 잘못한 것 같다.
 #include <iostream>
 #include <algorithm>
 #include <vector>
