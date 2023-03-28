@@ -63,7 +63,7 @@ int main() {
                 continue;
             }
 
-            while(!st.empty() && cmp(preSt, input[i])) {
+            while(!st.empty() && cmp(preSt, input[i]) && preSt != '(') {
                 cout << st.top();
                 st.pop();
                 if (st.empty()) break;
