@@ -19,14 +19,14 @@ int main() {
 
     //N값이 용액문제에 비해 줄어든거면 시간초과나진 않을 듯 !?!?
     int resX = 0, resY = 1, resM = v[2], sIdx, eIdx;
-    long long tmp = abs(v[0] + v[1] + v[2]);
+    long long tmp = abs(0LL + v[0] + v[1] + v[2]);
     for (int i = 0; i < N; i++) {
         int idx = v[i];
-
+        int flag = 0;
         if (i >= 2) {
             sIdx = 0, eIdx = i - 1;
             while(sIdx < eIdx) {
-                long long sum = v[sIdx] + v[eIdx] + idx;
+                long long sum = 0LL + v[sIdx] + v[eIdx] + idx;
                 if (tmp > abs(sum)) {
                     resX = sIdx;
                     resY = eIdx;
@@ -37,6 +37,8 @@ int main() {
                 if (sum == 0) {
                     resX = sIdx;
                     resY = eIdx;
+                    resM = idx;
+                    flag = 1;
                     break;
                 } else if (sum > 0) {
                     eIdx--;
@@ -45,11 +47,11 @@ int main() {
                 }
             }
         }
-
+        if (flag) break;
         if (i < N - 2) {
             sIdx = i + 1, eIdx = N - 1;
             while(sIdx < eIdx) {
-                long long sum = v[sIdx] + v[eIdx] + idx;
+                long long sum = 0LL + v[sIdx] + v[eIdx] + idx;
                 if (tmp > abs(sum)) {
                     resX = sIdx;
                     resY = eIdx;
@@ -60,6 +62,8 @@ int main() {
                 if (sum == 0) {
                     resX = sIdx;
                     resY = eIdx;
+                    resM = idx;
+                    flag = 1;
                     break;
                 } else if (sum > 0) {
                     eIdx--;
@@ -68,6 +72,7 @@ int main() {
                 }
             }            
         }
+        if (flag) break;
     }
 
     vector<int> res;
