@@ -1,68 +1,58 @@
-//BOJ_1513 경로 찾기 [골드 2]
+//BOJ_1513 경로찾기 [골드 2]
+
 #include <iostream>
 #include <algorithm>
 #include <vector>
-#include <map>
 
 using namespace std;
 
-int PER = 1000007;
 int dp[51][51][51][51];
-//dp[i][j][오락실 총 방문 횟수][방문한 오락실 최대 번호]
-map<pair<int, int>, int> orak;
+//dp[r][c][오락실 최대번호][오락실 개수] 인 경우의 수
+int orak[51][51];
+int MOD = 1000007;
 int main() {
     ios::sync_with_stdio(false); cin.tie(nullptr);
 
-    //입력 받기
     int N, M, C; cin >> N >> M >> C;
-    int cx, cy;
     for (int i = 1; i <= C; i++) {
-        cin >> cx >> cy;
-        orak.insert({{cx, cy}, i});
+        int r, c; cin >> r >> c;
+        orak[r][c] = i;
     }
 
-    //초기값
-    if (orak.find({1, 1}) != orak.end()) {
-        int o = orak.find({1,1}) -> second;
-        dp[1][1][1][o] = 1;
-    } else {
-        dp[1][1][0][0] = 1;
-    }
+    if (orak[1][1] != 0) dp[1][1][orak[1][1]][1] = 1;
+    else dp[1][1][0][0] = 1;
 
     for (int i = 1; i <= N; i++) {
-        for (int j = 1; j <= N; j++) {
+        for (int j = 1; j <= M; j++) {
             if (i == 1 && j == 1) continue;
-            
-            //오락실이 있는 경우
-            if (orak.find({i, j}) != orak.end()) {
-                int oNum = orak.find({i, j}) -> second;
-                for (int p = 0; p <= N; p++) {
-                    for (int q = 0; q <= M; q++) {
-                        dp[i][j][p + 1][oNum] = dp[i-1][j][p][q] + dp[i][j-1][p][q];
-
-                        cout << "dp[" << i << "][" << j << "][" << p << " + 1][" << oNum << "] = " << dp[i][j][p+1][oNum] << '\n';
+            int oNum = orak[i][j];
+            //오락실이라면
+            if (oNum != 0) {
+                for (int k = 0; k < oNum; k++) {
+                    for (int cnt = 0; cnt <= k; cnt++) {
+                        dp[i][j][oNum][cnt + 1] += dp[i-1][j][k][cnt] + dp[i][j-1][k][cnt];
+                        dp[i][j][oNum][cnt + 1] %= MOD;
                     }
                 }
             }
-
-            //오락실이 없는 경우
+            //오락실이 아니라면
             else {
-                for (int p = 1; p <= N; p++) {
-                    for (int q= 1; q <= N; q++) {
-                        dp[i][j][p][q] = (dp[i-1][j][p][q] + dp[i][j-1][p][q]) % PER;
-                        cout << "dp[" << i << "][" << j << "][" << p << "][" << q << "] = " << dp[i][j][p][q] << '\n';
+                for (int k = 0; k <= C; k++) {
+                    for (int cnt = 0; cnt <= k; cnt++) {
+                        dp[i][j][k][cnt] += dp[i-1][j][k][cnt] + dp[i][j-1][k][cnt];
+                        dp[i][j][k][cnt] %= MOD;
                     }
                 }
             }
         }
     }
 
-    for (int p = 0; p <= N; p++) {
+    for (int cnt = 0; cnt <= C; cnt++) {
         int sum = 0;
-        for (int q = 0; q <= N; q++) {
-            sum += dp[N][M][p][q];
+        for (int k = 0; k <= C; k++) {
+            sum += dp[N][M][k][cnt];
+            sum %= MOD;
         }
         cout << sum << " ";
     }
-    cout << '\n';
 }
