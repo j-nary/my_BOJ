@@ -32,12 +32,19 @@ int main() {
     }
     for (int i = 1; i <= N; i++) {
         for (int j = 1; j <= M; j++) {
-            if (v1[i] == v2[j] && dp[i - 1][j - 1].second <= v1[i])
-                dp[i][j] = {dp[i-1][j-1].first + 1, v1[i]};
-            else {
-                if (dp[i-1][j].first > dp[i][j-1].first)
-                    dp[i][j] = dp[i-1][j];
-                else dp[i][j] = dp[i][j-1];
+            for (int k = 1; k <= j; k++) {
+                if (v1[i] == v2[j] && dp[i - 1][k].second <= v1[i]) {
+                    if (dp[i - 1][k].first > dp[i][j].first)
+                        dp[i][j] = {dp[i-1][k].first + 1, v1[i]};
+                    else if (dp[i - 1][k].first == dp[i][j].first && dp[i-1][k].second < dp[i][j].second)
+                        dp[i][j] = {dp[i-1][k].first + 1, v1[i]};
+                }
+                else {
+                    if (dp[i-1][j].first > dp[i][j-1].first)
+                        dp[i][j] = dp[i-1][j];
+                    else dp[i][j] = dp[i][j-1];
+                }
+
             }
         }
     }
