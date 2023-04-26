@@ -8,10 +8,9 @@
 
 using namespace std;
 
-bool sosu[1000006];	//false¸é ¼Ò¼ö
+bool sosu[1000006];	//falseï¿½ï¿½ ï¿½Ò¼ï¿½
 bool chk[1000006];
 bool sgs(int num) {
-	memset(chk, 0, sizeof(chk));
 	while (!chk[num]) {
 		if (num == 1) return true;
 		chk[num] = true;
@@ -29,7 +28,7 @@ int main () {
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	int N; cin >> N;
 	
-	//¼Ò¼ö ÆÇÁ¤
+	//ï¿½Ò¼ï¿½ ï¿½ï¿½ï¿½ï¿½
 	sosu[1] = true;
 	for (int i = 2; i * i < 1000006; i++) {
 		if (sosu[i]) continue;

@@ -9,7 +9,7 @@
 using namespace std;
 
 pair<long long, long long> dp[102][102];
-//{°æ¿ìÀÇ ¼ö, ¸Ç ¾ÕÀÚ¸®°¡ 1ÀÎ °æ¿ìÀÇ ¼ö} 
+//{ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½, ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¸ï¿½ï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½} 
 
 void dpSolve() {
 	dp[1][0] = {2, 1};
@@ -22,7 +22,7 @@ void dpSolve() {
 	dp[3][1].first += dp[2][0].second;
 	dp[3][1].first += (dp[2][1].first * 2 - dp[2][1].second);
 	dp[3][2].first += dp[2][1].second;
-	for (int r = 3; r < 102; r++) {
+	for (int r = 3; r < 101; r++) {
 		for (int c = 0; c < r; c++) {
 			if (c == r- 1 || c == r - 2) {
 				dp[r][c].second = 1;
