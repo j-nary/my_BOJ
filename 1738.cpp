@@ -2,12 +2,12 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
-
+#define INF 1e15
 using namespace std;
 
 vector<pair<int, int>> gil[102];  // gil[u] = {v, w}
 long long PV[102];    //prev 이전 노드 저장
-int BF[102];    //Bellman-Ford 가중치 갱신 값 저장
+long long BF[102];    //Bellman-Ford 가중치 갱신 값 저장
 int main() {
     ios::sync_with_stdio(false); cin.tie(nullptr);
 
@@ -18,22 +18,20 @@ int main() {
     }
 
     //Bellman-Ford
-    for (int i = 0; i < gil[1].size(); i++) {
-        int nxt = gil[1][i].first;
-        int wgt = gil[1][i].second;
-        BF[nxt] = wgt;
-        PV[nxt] = 1;
+    for (int i = 2; i <= n; i++) {
+        BF[i] = INF;
     }
 
     for (int k = 0; k < n-1; k++) {
         int flag = 0;   // 갱신되는 거리가 있는지 체크
         for (int i = 1; i <= n; i++) {
+            if (BF[i] == INF) continue;
             for (int j = 0; j < gil[i].size(); j++) {
                 int nxt = gil[i][j].first;
                 int wgt = gil[i][j].second;
-                if (BF[nxt] > (long long)BF[i] + wgt) {
+                if (BF[nxt] > BF[i] + wgt) {
                     flag = 1;
-                    BF[nxt] = (long long)BF[i] + wgt;
+                    BF[nxt] = BF[i] + wgt;
                     PV[nxt] = i;
                 }
             }
@@ -51,7 +49,7 @@ int main() {
                 idx = i;
             }
         }
-        if (BF[cur] > BF[prv] + (long long)gil[prv][idx].second) {
+        if (BF[cur] > BF[prv] + gil[prv][idx].second) {
             cout << "-1\n";
             return 0;
         }
