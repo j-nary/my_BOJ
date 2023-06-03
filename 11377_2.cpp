@@ -6,24 +6,27 @@
 
 using namespace std;
 
-vector<int> v[1003];
-int cap[1003][1003];    //capacity
-int flow[1003][1003];   //flow
-int path[1003];         //경로 저장
+vector<int> v[2003];
+int cap[2003][2003];    //capacity
+int flow[2003][2003];   //flow
+int path[2003];         //경로 저장
 int main() {
     ios::sync_with_stdio(false); cin.tie(nullptr);
 
-    int N, M, K; cin >> N >> M;
+    int N, M, K; cin >> N >> M >> K;
     int cnt;
-    int ans = 0, S = 0, T = N * 2 + 1;   //Source, Sink
+    int ans = 0, S = 0, T = 2001, B = 2002;   //Source, Sink
+    v[S].push_back(B);
+    v[B].push_back(S);
+    cap[S][B] = cap[B][S] += K;
     for (int i = 1; i <= N; i++) {
         v[S].push_back(i);
         v[i].push_back(S);
         cap[S][i] = cap[i][S] += 1;
 
-        v[T].push_back(i + N);
-        v[i + N].push_back(T);
-        cap[T][i + N] = cap[i + N][T] += 1;
+        v[B].push_back(i);
+        v[i].push_back(B);
+        cap[B][i] = cap[i][B] += 1;
 
         cin >> cnt;
         for (int j = 0; j < cnt; j++) {
@@ -35,6 +38,12 @@ int main() {
         }
     }
 
+    for (int i = 1; i <= M; i++) {
+        v[T].push_back(i + N);
+        v[i + N].push_back(T);
+        cap[T][i + N] = cap[i + N][T] += 1;
+    }
+    
     while(1) {
         memset(path, -1, sizeof(path));
         queue<int> q;
@@ -69,5 +78,7 @@ int main() {
         }
         ans += F;
     }
+
+
     cout << ans << '\n';
 }
