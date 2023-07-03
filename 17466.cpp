@@ -8,9 +8,10 @@ int main() {
     ios::sync_with_stdio(false); cin.tie(nullptr);
 
     int N, P; cin >> N >> P;
-    int r = 1;
+    long long r = 1;
     for (; N > 0; N--) {
-        r = r * N % P;
+        int tmp = N % P;
+        r = (r * tmp) % P;
     }
     cout << r << '\n';
 }
