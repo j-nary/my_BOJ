@@ -6,17 +6,19 @@
 using namespace std;
 using ll = long long;
 
-ll A, B, C;
-
 //A^B(mod C) 구하기
-ll Pow(ll a, ll b, ll c) {
-    if (b == 0) return 1;
-    ll half = Pow(a, b/2, c);
-    if (b % 2 == 0) return half * half % c;
-    else return a * half % c * half % c;
-}
 int main() {
     ios::sync_with_stdio(false); cin.tie(nullptr);
+
+    ll A, B, C;
     cin >> A >> B >> C;
-    cout << Pow(A, B, C) << '\n';
+    
+    ll res = 1;
+    while (B > 0) {
+        if (B & 1) res = res * A % C;
+        B /= 2;
+        A = A * A % C;
+    }
+
+    cout << res << '\n';
 }
