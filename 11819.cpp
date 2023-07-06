@@ -10,15 +10,16 @@ using ll = long long;
 int main() {
     ios::sync_with_stdio(false); cin.tie(nullptr);
 
-    ll A, B, C;
-    cin >> A >> B >> C;
+    ll a, b, c;
+    cin >> a >> b >> c;
     
-    ll res = 1;
+    __int128_t A = a, B = b, C= c;
+    __int128_t res = 1;
     while (B > 0) {
         if (B & 1) res = res * A % C;
         B /= 2;
-        A = A * A % C;
+        A = A * (A % C) % C;
     }
 
-    cout << res << '\n';
+    cout << (long long)res << '\n';
 }
