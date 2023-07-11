@@ -5,19 +5,28 @@
 using namespace std;
 
 vector<int> v;
-int dp[10004][2];
+long long sum[10004];
 int main() {
     ios::sync_with_stdio(false); cin.tie(nullptr);
 
     int N, M; cin >> N >> M;
-    for (int i = 0; i < M; i++) {
+    for (int i = 0; i < N; i++) {
         int input; cin >> input;
         v.push_back(input);
     }
 
-    dp[]
-    for (int i = 0; i < M; i++) {
-
+    sum[0] = v[0];
+    for (int i = 1; i < N; i++) {
+        sum[i] = sum[i-1] + v[i];
     }
 
+    int tmp = 0, ans = 0;
+    for (int i = 0; i < N; i++) {
+        for (int j = i; j < N; j++) {
+            if (i == 0) tmp = sum[j];
+            else tmp = sum[j] - sum[i-1];
+            if (tmp == M) ans++;
+        }
+    }
+    cout << ans << '\n';
 }
