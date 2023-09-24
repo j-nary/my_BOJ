@@ -4,8 +4,12 @@
 
 using namespace std;
 
+int cnt = 0;
+
+void DC(int depth)
 int main() {
     ios::sync_with_stdio(false); cin.tie(nullptr);
 
-    
+    int N, X; cin >> N >> X;
+    DC(N);
 }
