@@ -8,7 +8,7 @@ using namespace std;
 struct node {
     int x, y, idx;
     double dist() const {
-        return sqrt(pow(x, 2) + pow(y, 2));
+        return max(abs(x), abs(y));
     }
     bool operator<(const node& other) const {
         return dist() > other.dist();
