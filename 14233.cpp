@@ -13,4 +13,14 @@ int main() {
         int input; cin >> input;
         v.push_back(input);
     }
+    sort(v.begin(), v.end());
+
+    int K = v[0];
+    for (int i = 1; i < N; i++) {
+        if (K * (i + 1) > v[i]) {
+            K = v[i] / (i + 1);
+        }
+    }
+
+    cout << K << '\n';
 }
