@@ -6,6 +6,7 @@ using namespace std;
 int P[5][5];
 
 void path(int q, int r) {
+    cout << "재귀호출 : P[" << q << "][" << r << "]\n";
     if (P[q][r] != -1) {
         path(q, P[q][r]);
         cout << " v" << P[q][r];

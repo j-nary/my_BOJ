@@ -64,12 +64,12 @@ int main() {
             if (S.find(cur) == S.end()) {
                 q.push({cur, d + 1});
                 S.insert(cur);
-                for (int i = 0; i < 3; i++) {
-                    for (int j = 0; j < 3; j++) {
-                        cout << cur[i][j] << " ";
-                    }
-                    cout << '\n';
-                }
+                // for (int i = 0; i < 3; i++) {
+                //     for (int j = 0; j < 3; j++) {
+                //         cout << cur[i][j] << " ";
+                //     }
+                //     cout << '\n';
+                // }
             }
 
             swap(cur[r][c], cur[nr][nc]);
