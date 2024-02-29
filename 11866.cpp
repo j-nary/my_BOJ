@@ -1,12 +1,28 @@
-#include <iosteam>
+//BOJ_11866 ìš”ì„¸í‘¸ìŠ¤ ë¬¸ì œ 0 [ì‹¤ë²„ 5]
+#include <bits/stdc++.h>
 
 using namespace std;
 
-//¿øÇü Å¥ ±¸ÇöÇÏ¸é µÉ µí?
-
 int main() {
-    int N; int K;
+    ios::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr);
+
+    int N, K;
     cin >> N >> K;
+    queue<int> q;
+    for (int i = 1; i <= N; i++) {
+        q.push(i);
+    }   
 
-
+    cout << "<";
+    while(!q.empty()) {
+        for (int i = 0; i < K - 1; i++) {
+            int tmp = q.front();
+            q.pop();
+            q.push(tmp);
+        }
+        cout << q.front();
+        q.pop();
+        if (!q.empty()) cout << ", ";
+    }
+    cout << ">\n";
 }
