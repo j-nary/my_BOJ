@@ -6,7 +6,7 @@ using namespace std;
 
 int N;
 vector<int> number;
-int minAns = 1e9 + 10, maxAns;
+int minAns = 1e9 + 10, maxAns = -1e9;
 
 int calc(string curOp) {
   int ret = number[0];
