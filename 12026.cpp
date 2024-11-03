@@ -42,13 +42,13 @@ int main() {
   for (int i = 0; i < N; i++) {
     switch(ip[i]) {
       case 'B':
-        Block[0].push_back(i);
+        Block[0].push_back(i + 1);
         break;
       case 'O':
-        Block[1].push_back(i);
+        Block[1].push_back(i + 1);
         break;
       case 'J':
-        Block[2].push_back(i);
+        Block[2].push_back(i + 1);
         break;
     }
   }
@@ -72,8 +72,9 @@ int main() {
 
     for (int j = B.size() - 1; j >= 0; j--) {
       if (B[j] < i) continue;
-      dp[B[j]] = min(dp[B[j]], dp[i] + (i - B[j]) * (i - B[j]));
+      dp[B[j]] = min(dp[B[j]], dp[i] + (B[j]- i) * (B[j]- i));
     }
   }
-  cout << dp[N] << '\n';
+  if (dp[N] == 1e9) cout << -1 << '\n';
+  else cout << dp[N] << '\n';
 }
