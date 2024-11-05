@@ -11,8 +11,8 @@ int main() {
   while (N--) {
     string str; cin >> str;
     for (int i = 0; i < str.size(); i++) {
-      cout << tolower(str[i]);
+      str[i] = tolower(str[i]);
     }
-    cout << '\n';
+    cout << str << '\n';
   }
 }
