@@ -8,7 +8,7 @@ using ll = long long;
 int main() {
   ios::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr);
 
-  int N, M;
+  int N, M;ㅌxxx
   cin >> N >> M;
 
   vector<ll> A(N);
