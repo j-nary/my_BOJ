@@ -4,10 +4,7 @@
 
 using namespace std;
 
-struct point{
-    int x, y, z;
-};
-vector<point> input;
+vector<pair<int, int>> input[3];
 struct tree{
     int s, e, w;
 };
@@ -29,14 +26,21 @@ int main() {
     memset(parent, -1, sizeof(parent));
     for (int i = 0; i < N; i++) {
         int x, y, z; cin >> x >> y >> z;
-        input.push_back({x, y, z});
+        input[0].push_back({x, i});
+        input[1].push_back({y, i});
+        input[2].push_back({z, i});
     }
-    for (int i = 0; i < N; i++) {
-        for (int j = i + 1; j < N; j++) {
-            int weight = min({abs(input[i].x - input[j].x), abs(input[i].y - input[j].y), abs(input[i].z - input[j].z)});
-            T.push_back({i, j, weight});
-        }
+
+    sort(input[0].begin(), input[0].end());
+    sort(input[1].begin(), input[1].end());
+    sort(input[2].begin(), input[2].end());
+
+    for (int i = 0; i < N - 1; i++) {
+        T.push_back({input[0][i].second, input[0][i + 1].second, abs(input[0][i].first - input[0][i + 1].first)});
+        T.push_back({input[1][i].second, input[1][i + 1].second, abs(input[1][i].first - input[1][i + 1].first)});
+        T.push_back({input[2][i].second, input[2][i + 1].second, abs(input[2][i].first - input[2][i + 1].first)});
     }
+    
     sort(T.begin(), T.end(), [](const tree &a, const tree &b){
         return a.w < b.w;
     });

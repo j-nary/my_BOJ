@@ -7,6 +7,9 @@ using namespace std;
 struct tree{
     int s, e;
     double w;
+    bool operator<(const tree &t) const {
+        return this->w < t.w;
+    }
 };
 int parent[502];
 int find(int N) {
@@ -29,23 +32,20 @@ void test_case() {
     }
     for (int i = 0; i < P; i++) {
         for (int j = i + 1; j < P; j++) {
-            double dist = sqrt(pow(input[i].first - input[j].first, 2) + pow(input[i].second - input[j].second, 2));
-            // dist = sqrt(dist);
+            double dist = pow(input[i].first - input[j].first, 2) + pow(input[i].second - input[j].second, 2);
+            dist = sqrt(dist);
             T.push_back({i, j, dist});
         }
     }
-    sort(T.begin(), T.end(), [](const tree &a, const tree &b) {
-        return a.w < b.w;
-    });
-    double ans = 0;
-    int cnt = 0;
-    for (int i = 0; i < P && cnt < P - 1; i++) {
-        if (find(T[i].s) == find(T[i].e)) continue;
-        cnt++;
-        merge(T[i].s, T[i].e);
-        if (cnt == P - 1) ans = T[i].w;
+    sort(T.begin(), T.end());
+
+    vector<double> ans;
+    for (auto& t: T) {
+        if (find(t.s) == find(t.e)) continue;
+        merge(t.s, t.e);
+        ans.push_back(t.w);
     }
-    printf("%.2f\n", ans);
+    printf("%.2f\n", ans[ans.size() - S]);
 }
 
 int main() {
