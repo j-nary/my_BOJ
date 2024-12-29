@@ -19,7 +19,7 @@ int main() {
   }
 
   int ans = 0;
-  for (int i = A; i <= A; i++) {
+  for (int i = A; i <= B; i++) {
     ans += arr[i];
   }
   cout << ans << '\n';
