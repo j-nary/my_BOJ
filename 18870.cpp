@@ -16,13 +16,15 @@ int main() {
   sort(v.begin(), v.end());
 
   vector<int> ans(N);
-  for (int i = 0; i < N; i++) {
-    int idx = i;
-    while(idx > 0 && v[idx] == v[idx - 1]) idx--;
-
-    ans[v[i].second] = idx;
+  ans[v[0].second] = 0;
+  int tmp = 0;
+  for (int i = 1; i < N; i++) {
+    int res = 0;
+    if (v[i].first == v[i - 1].first) res = tmp;
+    else res = ++tmp;
+    ans[v[i].second] = res;
   }
 
-  for (auto a: ans) cout << a << ' ';
+  for(auto a: ans) cout << a << ' ';
   cout << '\n';
 }
